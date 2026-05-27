@@ -35,6 +35,7 @@ export default function ChatSessionPage() {
     if (typeof window === "undefined" || hasInitialized.current) return
     hasInitialized.current = true 
 
+    const storedMessage = sessionStorage.getItem("pending_msg");
     const token = Cookies.get("user_token")
 
     if (storedMessage) {

@@ -1,70 +1,70 @@
-"use client"
-import { useState } from "react"
-import { FcGoogle } from "react-icons/fc"
-import { FiMail, FiLock, FiEye, FiEyeOff, FiUser, FiAtSign } from "react-icons/fi"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import Cookies from "js-cookie"
-import { authService } from "@/lib/api" 
-import { useGoogleLogin } from "@react-oauth/google"
+"use client";
+import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { FiMail, FiLock, FiEye, FiEyeOff, FiUser, FiAtSign } from "react-icons/fi";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { authService } from "@/lib/api"; // Pastikan path ini benar sesuai struktur foldermu
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function RegisterPage() {
-  const router = useRouter()
-  const [name, setName] = useState("")
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState("")
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleGoogleRegister = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
-        setLoading(true)
-        setError("")
-        setSuccess("")
+        setLoading(true);
+        setError("");
+        setSuccess("");
         
-        const data = await authService.googleLogin(tokenResponse.access_token)
+        const data = await authService.googleLogin(tokenResponse.access_token);
 
-        Cookies.set("user_token", data.access_token, { expires: 1, path: "/" })
-        if (data.name) Cookies.set("user_name", data.name, { expires: 1, path: "/" })
-        if (data.email) Cookies.set("user_email", data.email, { expires: 1, path: "/" })
-        if (data.avatar_url) Cookies.set("user_avatar", data.avatar_url, { expires: 1, path: "/" })
-        setSuccess("Success register using your Google Account!")
+        Cookies.set("user_token", data.access_token, { expires: 1, path: "/" });
+        if (data.name) Cookies.set("user_name", data.name, { expires: 1, path: "/" });
+        if (data.email) Cookies.set("user_email", data.email, { expires: 1, path: "/" });
+        if (data.avatar_url) Cookies.set("user_avatar", data.avatar_url, { expires: 1, path: "/" });
+        setSuccess("Success register using your Google Account!");
         
         setTimeout(() => {
-          router.push("/")
-        }, 1500)
+          router.push("/");
+        }, 1500);
 
       } catch (err: any) {
-        setError(err.message || "Failed to authenticate with backend")
+        setError(err.message || "Failed to authenticate with backend");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     },
     onError: () => {
-      setError("Google authentication failed")
+      setError("Google authentication failed");
     }
-  })
+  });
 
   const handleEmailRegister = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setSuccess("")
+    e.preventDefault();
+    setError("");
+    setSuccess("");
 
     if (password !== confirmPassword) {
-      setError("Passwords don't match!")
-      return
+      setError("Passwords don't match!");
+      return;
     }
     if (password.length < 8) {
-      setError("Password must be at least 8 characters")
-      return
+      setError("Password must be at least 8 characters");
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
 
     try {
       await authService.register({
@@ -73,19 +73,19 @@ export default function RegisterPage() {
         username: username,
         password: password,
         confirm_password: confirmPassword,
-      })
+      });
 
-      setSuccess("Registration successful!")
+      setSuccess("Registration successful!");
       setTimeout(() => {
-        router.push("/login")
-      }, 2000)
+        router.push("/login");
+      }, 2000);
 
     } catch (err: any) {
-      setError(err.message || "Registration failed")
+      setError(err.message || "Registration failed");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="h-screen flex items-center justify-center bg-[#0a0a0a] p-4 relative overflow-hidden hide-scrollbar">
@@ -196,5 +196,5 @@ export default function RegisterPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

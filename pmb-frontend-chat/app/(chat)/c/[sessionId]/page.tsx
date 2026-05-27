@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { BotMessageSquare, UserCircle, Copy, Check, ArrowUp, Loader2 } from "lucide-react"
-import { useParams, useRouter } from "next/navigation"
+import { useParams, useRouter, useSearchParams } from "next/navigation"
 import { chatService } from "@/lib/api"
 
 import ReactMarkdown from "react-markdown"
@@ -18,7 +18,7 @@ interface Message {
   timestamp: string
 }
 
-export default function ChatSessionPage() {
+export default function ChatPage() {
   const params = useParams()
   const router = useRouter()
   const sessionId = params.sessionId as string
@@ -30,6 +30,7 @@ export default function ChatSessionPage() {
   
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const hasInitialized = useRef(false)
+  
 
   useEffect(() => {
     if (typeof window === "undefined" || hasInitialized.current) return
@@ -65,6 +66,7 @@ export default function ChatSessionPage() {
       loadHistory()
     }
   }, [sessionId, router])
+  
   
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })

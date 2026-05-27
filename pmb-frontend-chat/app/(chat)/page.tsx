@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { BotMessageSquare, CornerDownLeft, ArrowUp } from "lucide-react"
+import { BotMessageSquare, ArrowUp } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { v4 as uuidv4 } from "uuid"
 import Cookies from "js-cookie"
@@ -34,7 +34,6 @@ export default function WelcomePage() {
 
       <div className="flex-1 flex flex-col z-10 overflow-hidden">
         
-        {/* Welcome Content */}
         <div className="flex-1 flex flex-col items-center justify-center p-4 space-y-6 text-center overflow-y-auto hide-scrollbar">
           <div className="space-y-3 max-w-3xl">
             <div className="inline-block p-3 rounded-3xl bg-yellow-500/10 border border-yellow-500/20 mb-1 shadow-lg shadow-yellow-500/5">
@@ -46,10 +45,10 @@ export default function WelcomePage() {
             </h1>
             
             <p className="text-base text-gray-400 leading-relaxed max-w-2xl mx-auto pt-2">
-              Halo! Kenalin, aku asisten virtual yang siap bantu kamu buat cari info soal pendaftaran di ISTTS <br />
-              Tanyakan seputar pendaftaran, program studi, biaya kuliah, dan fasilitas. <br />
+              Halo! Kenalin, aku agent virtual yang siap bantu kamu buat cari info soal pendaftaran di ISTTS <br />
+              Tanyakan seputar pendaftaran, program studi, biaya kuliah, dan beasiswa yang tersedia <br />
               <span className="text-yellow-500/80 font-medium text-xs mt-1 block">
-                *Agent ini hanya menjawab informasi seputar Penerimaan Mahasiswa Baru di ISTTS.
+                *Agent ini hanya menjawab informasi seputar Penerimaan Mahasiswa Baru di ISTTS
               </span>
             </p>
           </div>

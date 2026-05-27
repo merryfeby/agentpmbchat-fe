@@ -16,7 +16,7 @@ interface Message {
   timestamp: string
 }
 
-export default function PMBChatWidget() {
+export default function Widget() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
@@ -26,12 +26,17 @@ export default function PMBChatWidget() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  const MAIN_WEBSITE_URL = "https://pmb.istts.ac.id"   
+  const MAIN_WEBSITE_URL = "http://localhost:3002" 
 
   useEffect(() => {
     if (isOpen && !sessionId) {
-      const newSessionId = uuidv4()
-      setSessionId(newSessionId)
+      let savedSessionId = localStorage.getItem("widget_session_id")
+      
+      if (!savedSessionId) {
+        savedSessionId = uuidv4()
+        localStorage.setItem("widget_session_id", savedSessionId)
+      }
+      setSessionId(savedSessionId)
     }
   }, [isOpen, sessionId])
 
@@ -60,7 +65,7 @@ export default function PMBChatWidget() {
       const botMessage: Message = {
         id: Date.now() + 1,
         role: "bot",
-        content: data.reply || "Maaf, saya tidak bisa memproses pesan saat ini.",
+        content: data.reply || "Maaf, saya tidak bisa memproses pesan saat ini",
         timestamp: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
       }
 
@@ -118,7 +123,7 @@ export default function PMBChatWidget() {
                 title="Open Full Version"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
-                Versi Penuh
+                Full Version
               </button>
               <button
                 onClick={() => setIsOpen(false)}

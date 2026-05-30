@@ -2,10 +2,11 @@
 
 import { useState, useRef, useEffect } from "react"
 import { BotMessageSquare, UserCircle, Copy, Check, ArrowUp, Loader2 } from "lucide-react"
-import { useParams, useRouter, useSearchParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { chatService } from "@/lib/api"
-
 import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
+import rehypeRaw from "rehype-raw"
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
 import "katex/dist/katex.min.css"
@@ -146,8 +147,8 @@ export default function ChatPage() {
                   >
                     {msg.role === "bot" ? (
                       <ReactMarkdown 
-                        remarkPlugins={[remarkMath]}
-                        rehypePlugins={[rehypeKatex]}
+                        remarkPlugins={[remarkGfm, remarkMath]}
+                        rehypePlugins={[rehypeRaw, rehypeKatex]}
                         components={{
                           strong: ({node, ...props}) => <strong className="font-bold text-yellow-400" {...props} />,
                           p: ({node, ...props}) => <p className="mb-3 last:mb-0 [&:not(:first-child)]:mt-3" {...props} />,

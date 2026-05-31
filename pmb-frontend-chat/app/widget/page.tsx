@@ -213,6 +213,7 @@ export default function Widget() {
               <div className="flex items-end gap-2">
                 <textarea
                   value={input}
+                  maxLength={500}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {

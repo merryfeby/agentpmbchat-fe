@@ -30,11 +30,12 @@ export default function Widget() {
 
   useEffect(() => {
     if (isOpen && !sessionId) {
-      let savedSessionId = localStorage.getItem("widget_session_id")
+      let savedSessionId = sessionStorage.getItem("widget_session_id")
       
       if (!savedSessionId) {
         savedSessionId = uuidv4()
         localStorage.setItem("widget_session_id", savedSessionId)
+
       }
       setSessionId(savedSessionId)
     }

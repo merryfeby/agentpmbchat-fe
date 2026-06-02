@@ -26,7 +26,7 @@ export default function Widget() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  const MAIN_WEBSITE_URL = "http://localhost:3002" 
+  const MAIN_WEBSITE_URL = process.env.NEXT_PUBLIC_MAIN_WEBSITE_URL
 
   useEffect(() => {
     if (isOpen && !sessionId) {

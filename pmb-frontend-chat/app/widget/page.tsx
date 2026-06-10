@@ -150,7 +150,6 @@ export default function Widget() {
                 <BotMessageSquare className="w-12 h-12 text-yellow-500/70 mb-4" />
                 <p className="text-white text-lg font-medium">Halo!</p>
                 <p className="text-gray-400 mt-2">Ada yang bisa saya bantu seputar PMB ISTTS?</p>
-                 <p className="text-gray-400 mt-1 text-sm">Ada yang bisa saya bantu seputar PMB ISTTS?</p>
                 <div className="mt-5 bg-gray-900 border border-gray-700 rounded-2xl px-4 py-3.5 text-left space-y-2">
                   <p className="text-[11px] text-gray-400 leading-relaxed">
                     ⚠️ Saya adalah AI dan mungkin memberikan informasi yang kurang tepat. Untuk info yang pasti, hubungi kami langsung:

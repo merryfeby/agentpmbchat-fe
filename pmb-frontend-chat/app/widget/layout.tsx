@@ -12,10 +12,18 @@ export default function WidgetLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="h-screen w-full bg-transparent">
-      <div className="h-full w-full max-w-[420px] mx-auto flex flex-col overflow-hidden">
-        {children}
+    <>
+    <style>{`
+        html, body { 
+          background: transparent !important; 
+          background-color: transparent !important;
+        }
+        `}</style>
+      <div className="h-screen w-full bg-transparent">
+        <div className="h-full w-full max-w-[420px] mx-auto flex flex-col overflow-hidden">
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

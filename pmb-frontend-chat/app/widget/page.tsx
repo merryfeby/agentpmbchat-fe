@@ -110,7 +110,7 @@ export default function Widget() {
         </button>
       )}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-[380px] h-[580px] bg-gray-950 border border-gray-700 rounded-3xl shadow-2xl flex flex-col overflow-hidden z-50">
+        <div className="fixed bottom-6 right-6 w-[min(405px,calc(100vw-2rem))] h-[min(605px,calc(100vh-2rem))] bg-gray-950 border border-gray-700 rounded-3xl shadow-2xl flex flex-col overflow-hidden z-50">
           <div className="bg-gray-900 border-b border-gray-700 px-5 py-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-xl flex items-center justify-center">
